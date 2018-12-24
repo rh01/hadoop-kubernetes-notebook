@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shenhengheng-hadoop
+spec:
+  replicas: 1 
+  template:
+    metadata: 
+      labels:
+        app: hadoop
+    spec:
+      containers:
+      - name: shenhengheng-hadoop
+        image: bigdatateam/hdfs-notebook
+        ports:
+        - containerPort: 8888 
+        volumeMounts:
+        - name : shenhengheng-hadoop
+          mountPath : /home/
+      volumes:
+      - name: shenhengheng-hadoop
+        persistentVolumeClaim:
+          claimName: shenhengheng-hadoop-pv-claim
